@@ -1,7 +1,7 @@
 package io.github.maeloliveira.rest;
 
 import io.github.maeloliveira.domain.model.User;
-import io.github.maeloliveira.domain.model.repository.UserRepository;
+import io.github.maeloliveira.domain.repository.UserRepository;
 import io.github.maeloliveira.rest.dto.CreateUserRequest;
 import io.quarkus.hibernate.orm.panache.PanacheQuery;
 import jakarta.inject.Inject;

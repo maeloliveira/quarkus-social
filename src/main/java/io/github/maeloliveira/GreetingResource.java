@@ -10,7 +10,7 @@ import jakarta.ws.rs.core.Response;
 @Path("/hello")
 public class GreetingResource {
 
-    @POST
+    @GET
     @Produces(MediaType.TEXT_PLAIN)
     public String hello() {
         return "Hello RESTEasy";
