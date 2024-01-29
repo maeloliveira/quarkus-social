@@ -1,19 +1,24 @@
 package io.github.maeloliveira;
 
+import io.github.maeloliveira.domain.repository.UserRepository;
+import jakarta.inject.Inject;
+import jakarta.ws.rs.Consumes;
 import jakarta.ws.rs.GET;
-import jakarta.ws.rs.POST;
 import jakarta.ws.rs.Path;
 import jakarta.ws.rs.Produces;
 import jakarta.ws.rs.core.MediaType;
-import jakarta.ws.rs.core.Response;
 
-@Path("/hello")
+@Path("/social")
+@Produces(MediaType.APPLICATION_JSON)
+@Consumes(MediaType.APPLICATION_JSON)
 public class GreetingResource {
 
+    @Inject
+    UserRepository userRepository;
+
     @GET
-    @Produces(MediaType.TEXT_PLAIN)
-    public String hello() {
-        return "Hello RESTEasy";
+    public long list() {
+        return userRepository.count();
     }
 
 }

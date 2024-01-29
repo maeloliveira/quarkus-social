@@ -1,6 +1,7 @@
 package io.github.maeloliveira.domain.model;
 
 import jakarta.persistence.*;
+import jakarta.transaction.Status;
 import lombok.Data;
 
 @Entity
@@ -16,5 +17,8 @@ public class User {
 
     @Column(name = "age")
     private Integer age;
+
+    @Column(name = "status")
+    private Status status;
 
 }
