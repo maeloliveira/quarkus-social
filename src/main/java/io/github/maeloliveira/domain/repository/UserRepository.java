@@ -9,7 +9,7 @@ import java.util.List;
 
 @ApplicationScoped
 public class UserRepository implements PanacheRepositoryBase<User, Long> {
-    public User ListNames(String name){
+    public User listNames(String name){
         return find("name", name).firstResult();
     }
 

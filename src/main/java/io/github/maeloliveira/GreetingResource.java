@@ -1,6 +1,9 @@
 package io.github.maeloliveira;
 
+import io.github.maeloliveira.domain.model.User;
 import io.github.maeloliveira.domain.repository.UserRepository;
+import io.quarkus.hibernate.orm.panache.PanacheQuery;
+import io.quarkus.panache.common.Sort;
 import jakarta.inject.Inject;
 import jakarta.ws.rs.Consumes;
 import jakarta.ws.rs.GET;
@@ -17,8 +20,14 @@ public class GreetingResource {
     UserRepository userRepository;
 
     @GET
-    public long list() {
-        return userRepository.count();
+    public PanacheQuery<User> list(String name) {
+        return (PanacheQuery<User>) userRepository.listNames(name);
+    }
+
+    @GET
+    @Path("/status")
+    public PanacheQuery<User> listAlive() {
+        return (PanacheQuery<User>) userRepository.findAlive();
     }
 
 }
