@@ -18,7 +18,4 @@ public class User {
     @Column(name = "age")
     private Integer age;
 
-    @Column(name = "status")
-    private Status status;
-
 }
