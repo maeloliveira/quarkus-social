@@ -1,7 +1,6 @@
 package io.github.maeloliveira.domain.model;
 
 import jakarta.persistence.*;
-import jakarta.transaction.Status;
 import lombok.Data;
 
 @Entity
