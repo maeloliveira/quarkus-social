@@ -5,10 +5,14 @@ import io.github.maeloliveira.domain.model.User;
 import io.github.maeloliveira.domain.repository.PostRepository;
 import io.github.maeloliveira.domain.repository.UserRepository;
 import io.github.maeloliveira.rest.dto.CreatePostRequest;
+import io.github.maeloliveira.rest.dto.PostResponse;
+import io.quarkus.panache.common.Sort;
 import jakarta.inject.Inject;
 import jakarta.transaction.Transactional;
 import jakarta.ws.rs.*;
 import jakarta.ws.rs.core.Response;
+
+import java.util.stream.Collectors;
 
 @Path("/users/{userId}/posts")
 @Consumes({"application/json"})
@@ -46,6 +50,13 @@ public class PostResource {
         if (user == null) {
             return Response.status(Response.Status.NOT_FOUND).build();
         }
-        return Response.ok(user).build();
+        var query = repository.find(
+                "user", Sort.by("dateTime", Sort.Direction.Descending) , user);
+        var list = query.list();
+
+        var postResponseList = list.stream().map(PostResponse::fromEntity)
+                .collect(Collectors.toList());
+
+        return Response.ok(postResponseList).build();
     }
 }
